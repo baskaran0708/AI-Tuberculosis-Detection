@@ -115,9 +115,14 @@ Should see:
 
 **Reset everything and start fresh:**
 ```powershell
-git status
+git init
 git add .
-git commit -m "Update project files"
-git push
-```
+git commit -m "Initial commit: AI TB Detection web app"
+git remote add origin https://github.com/YOUR-USER/REPO-NAME.git
 
+```git push -u origin main
+git status
+git remote -v
+git push -u origin main
+git pull origin main --allow-unrelated-histories
+git push -u origin main
