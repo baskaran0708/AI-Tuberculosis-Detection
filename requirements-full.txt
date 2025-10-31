@@ -1,0 +1,2 @@
+-r requirements-app.txt
+tensorflow==2.16.2

@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.log
+*.sqlite3
+
+# Virtual env
+.venv/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build / cache
+*.egg-info/
+.dist/
+.build/
+.cache/
+
+# Models & large artifacts (keep out of git)
+models/*.keras
+saved_models/
+logs/
+
+# Env files
+.env

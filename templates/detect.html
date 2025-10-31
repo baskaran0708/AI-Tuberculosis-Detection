@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Detect TB • AI Medical Imaging</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+	<style>
+		body { font-family: 'Inter', sans-serif; }
+		.gradient-bg { background: radial-gradient(1200px 600px at 10% 10%, rgba(59,130,246,0.25), transparent 60%), radial-gradient(800px 400px at 90% 20%, rgba(16,185,129,0.25), transparent 60%), linear-gradient(180deg, #0b1220 0%, #0a0f1a 100%); }
+		.glass { backdrop-filter: blur(10px); background: rgba(255,255,255,0.05); }
+	</style>
+</head>
+<body class="gradient-bg min-h-screen text-white">
+	<header class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+		<a class="text-white/80 hover:text-white" href="/">← Back</a>
+		<h1 class="text-xl font-bold">AI Tuberculosis Detection</h1>
+		<div></div>
+	</header>
+
+	<main class="max-w-6xl mx-auto px-6 pb-20">
+		<div class="grid lg:grid-cols-3 gap-8">
+			<div class="lg:col-span-2 space-y-8">
+				<!-- Upload Card -->
+				<div class="rounded-2xl glass border border-white/10 p-6">
+					<h2 class="text-2xl font-extrabold">Upload Scan</h2>
+					<p class="text-white/70 mt-2 text-sm">Supported: JPG, PNG, DICOM (.dcm)</p>
+					<form id="uploadForm" class="mt-6">
+						<input id="file" name="file" type="file" class="hidden" accept=".jpg,.jpeg,.png,.dcm,application/dicom,image/jpeg,image/png" />
+						<div id="dropzone" class="flex flex-col items-center justify-center rounded-xl border border-dashed border-white/20 hover:border-white/40 p-10 text-center cursor-pointer transition-colors">
+							<div class="text-6xl">🩻</div>
+							<p class="mt-3 text-white/80">Click to choose or drag-and-drop a file</p>
+							<p class="text-xs text-white/50 mt-1">Max 50MB • Medical images supported</p>
+						</div>
+						<div class="mt-6 flex items-center gap-3">
+							<button id="detectBtn" type="submit" class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold disabled:opacity-50 disabled:cursor-not-allowed">Detect</button>
+							<button id="clearBtn" type="button" class="px-5 py-3 rounded-xl border border-white/20 hover:border-white/40">Clear</button>
+						</div>
+					</form>
+				</div>
+				<!-- Preview Card -->
+				<div class="rounded-2xl glass border border-white/10 p-6">
+					<h3 class="text-lg font-bold">Preview</h3>
+					<div class="mt-4 rounded-xl bg-black/30 border border-white/10 p-3 min-h-[260px] flex items-center justify-center overflow-hidden" id="previewBox">
+						<span class="text-white/50">Preview will appear here</span>
+					</div>
+				</div>
+			</div>
+			<!-- Results -->
+			<div class="space-y-6">
+				<div class="rounded-2xl glass border border-white/10 p-6">
+					<h3 class="text-lg font-bold">Prediction</h3>
+					<div id="resultContent" class="mt-3 text-white/80 text-sm">No prediction yet.</div>
+					<div id="confidenceViz" class="mt-5 hidden">
+						<svg viewBox="0 0 36 36" class="w-28 h-28">
+							<path class="text-white/10" stroke="currentColor" stroke-width="3" fill="none" d="M18 2a16 16 0 1 1 0 32a16 16 0 1 1 0-32"></path>
+							<path id="gauge" class="text-emerald-400" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"
+								d="M18 2a16 16 0 1 1 0 32a16 16 0 1 1 0-32" stroke-dasharray="0,100"></path>
+						</svg>
+						<div class="mt-3 text-sm text-white/70">Confidence</div>
+					</div>
+				</div>
+				<div class="rounded-2xl glass border border-white/10 p-6">
+					<h3 class="text-lg font-bold">Notes</h3>
+					<ul class="mt-3 text-white/70 text-sm list-disc pl-5 space-y-2">
+						<li>Preview supports JPG/PNG. DICOM shows a text indicator.</li>
+						<li>Predictions are for research/decision support only.</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<footer class="max-w-6xl mx-auto px-6 pb-10 text-sm text-white/50">
+		<p>Disclaimer: For research and decision support only. Not a medical device.</p>
+	</footer>
+
+	<script src="/static/js/detect.js"></script>
+</body>
+</html>
